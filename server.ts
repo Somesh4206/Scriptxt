@@ -82,6 +82,23 @@ async function main(): Promise<void> {
   await waitForStreamlit();
 
   const server = http.createServer((req, res) => {
+    const reqPath = (req.url || '/').split('?')[0];
+    if (
+      (req.method === 'GET' || req.method === 'HEAD') &&
+      reqPath === '/googleaee54bf2d5a00ed1.html'
+    ) {
+      const verificationFile = path.resolve(process.cwd(), 'googleaee54bf2d5a00ed1.html');
+      if (fs.existsSync(verificationFile)) {
+        const body = fs.readFileSync(verificationFile);
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Content-Length': body.length,
+        });
+        res.end(req.method === 'HEAD' ? undefined : body);
+        return;
+      }
+    }
+
     const proxyReq = http.request(
       {
         hostname: STREAMLIT_HOST,

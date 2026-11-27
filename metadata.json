@@ -1,0 +1,6 @@
+{
+  "name": "SCRIPTXT: Prompt-Powered Content Generator",
+  "description": "Controlled LLM content pipeline turning one topic into LinkedIn posts, X threads, Instagram captions, blog outlines, and a structured multi-day content calendar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
